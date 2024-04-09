@@ -1,3 +1,5 @@
+import IpConverter from "./IpConverter";
+
 function NetworkLayer() {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
@@ -5,6 +7,12 @@ function NetworkLayer() {
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           Network layer tools
         </h1>
+        <p className="max-w-[700px] text-lg text-muted-foreground">
+          I haven't design the whole app yet, just putting everything here for now.
+        </p>
+      </div>
+      <div className="flex max-w-[980px] flex-col items-start gap-2">
+        <IpConverter />
       </div>
     </section>
   );
