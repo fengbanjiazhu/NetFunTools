@@ -83,7 +83,7 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
   const afterConvert = reformHelper(ipStr, currentType ? ipToBin : binToIp);
 
   return (
-    <Card className="my-6 min-w-full">
+    <Card className="my-6 sm:min-w-full">
       <CardHeader>
         <CardTitle>IP to Binary</CardTitle>
         <CardDescription>From IP to Binary.</CardDescription>
