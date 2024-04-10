@@ -1,26 +1,18 @@
 import Layout from "./Layout";
 import HomePage from "@/components/HomePage";
 import NetworkLayer from "./components/NetworkLayer";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Toaster } from "@/components/ui/toaster";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/tools",
-    element: <NetworkLayer />,
-  },
-]);
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <Layout>
-      <RouterProvider router={router} />
-      <Toaster></Toaster>
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/tools" element={<NetworkLayer />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
