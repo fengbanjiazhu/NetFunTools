@@ -83,14 +83,14 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
   const afterConvert = reformHelper(ipStr, currentType ? ipToBin : binToIp);
 
   return (
-    <Card className="my-6 sm:min-w-full">
+    <Card className="my-6 sm:min-w-64 max-w-lg">
       <CardHeader>
         <CardTitle>IP to Binary</CardTitle>
         <CardDescription>From IP to Binary.</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex w-full max-w-sm items-center space-x-2">
-          <Input className="w-98" ref={inputRef} placeholder={exampleStr} />
+        <div className="flex w-full max-w-lg items-center space-x-2">
+          <Input ref={inputRef} placeholder={exampleStr} />
           <Button onClick={onSetIp}>Convert</Button>
           <Button
             disabled={!ipStr}
@@ -107,11 +107,11 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
           {ipStr && (
             <>
               <p>
-                Result of <i className="font-bold tracking-wide">{ipStr} </i> is :
+                Result of <i className="sm:font-bold sm:tracking-wide">{ipStr} </i> is :
               </p>
               <br></br>
-              <div className="flex gap-4 text-xl">
-                <p className="tracking-wider">{afterConvert}</p>
+              <div className="flex gap-4 text-sm sm:text-xl">
+                <p className="sm:tracking-wider">{afterConvert}</p>
                 <CopyToClipboard onCopy={() => setCopied(true)} text={afterConvert}>
                   <button>{copied ? <LuCopyCheck /> : <LuCopy />}</button>
                 </CopyToClipboard>
