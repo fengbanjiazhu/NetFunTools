@@ -1,7 +1,7 @@
-// import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { LuCopy, LuCopyCheck } from "react-icons/lu";
+import { decimalToBinary, binaryToDecimal } from "@/utils/helper";
 
 import {
   Card,
@@ -77,10 +77,9 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
     }
   }
 
-  const ipToBin = (num: number) => num.toString(2).padStart(8, "0");
-  const binToIp = (str: string) => parseInt(str, 2);
+  const ipToBin = (num: number) => decimalToBinary(num).padStart(8, "0");
 
-  const afterConvert = reformHelper(ipStr, currentType ? ipToBin : binToIp);
+  const afterConvert = reformHelper(ipStr, currentType ? ipToBin : binaryToDecimal);
 
   return (
     <Card className="my-6 sm:min-w-64 max-w-lg">
