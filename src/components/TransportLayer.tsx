@@ -1,3 +1,5 @@
+import ChecksumCard from "./ChecksumCard";
+
 function TransportLayer() {
   return (
     <>
@@ -7,8 +9,7 @@ function TransportLayer() {
         </h2>
       </div>
       <div className="flex max-w-[980px] flex-col items-start gap-2">
-        {/* <IpConverter /> */}
-        {}
+        <ChecksumCard />
       </div>
     </>
   );

@@ -15,7 +15,7 @@ function ToolNav({ items, onSetField }: ToolNavProps) {
     <Menubar>
       {items.map((item) => {
         return (
-          <MenubarMenu>
+          <MenubarMenu key={item.fieldName}>
             <MenubarTrigger
               onClick={() => {
                 onSetField(item.fieldName);
