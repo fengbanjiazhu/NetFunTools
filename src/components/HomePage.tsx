@@ -18,7 +18,7 @@ export default function HomePage() {
           Net Fun is not fun, so I made something just for fun
         </p>
       </div>
-      <div className="sm:my-28 xl:flex gap-8">
+      <div className="sm:my-28 xl:flex gap-8 px-8">
         <UpdateLog title="Update Log" updateLog={updateLog}></UpdateLog>
         <UpdateLog title="Planed" updateLog={planedLog}></UpdateLog>
       </div>
