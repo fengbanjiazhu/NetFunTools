@@ -3,4 +3,4 @@ export const ipv4Regex =
 
 export const binaryIPv4Regex = /^(?:[01]{8}\.){3}[01]{8}$/;
 
-export const binaryChecksumRegex = /^(?:[01]{8}|[01]{16}|[01]{32})$/;
+export const binaryChecksumRegex = /^(?:[01]{8}|[01]{16})$/;

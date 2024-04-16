@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { LuCopy, LuCopyCheck } from "react-icons/lu";
+import { useState, useRef } from "react";
 import { decimalToBinary, binaryToDecimal } from "@/utils/helper";
+
+import CopyDisplay from "./CopyDisplay";
 
 import {
   Card,
@@ -27,23 +27,12 @@ type IpConverterCardProps = {
 
 function IpConverterCard({ regex, type }: IpConverterCardProps) {
   const [ipStr, setIpStr] = useState("");
-  const [copied, setCopied] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const currentType = type == "IP";
   const exampleStr = currentType ? "192.168.0.1" : "10000010.10011011.11000000.00111000";
-  let timer: ReturnType<typeof setTimeout>;
-
-  useEffect(() => {
-    if (!copied) return;
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      console.log("triggered!");
-      setCopied(false);
-    }, 5000);
-  }, [copied]);
 
   const errorToast = (message: string) => {
     toast({
@@ -55,7 +44,7 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
   };
 
   function onSetIp() {
-    const currentValue = inputRef.current?.value;
+    const currentValue = inputRef.current?.value.trim();
 
     if (!currentValue) {
       errorToast("You can't leave input area blank");
@@ -70,7 +59,6 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
   }
 
   function clearField(ref: React.RefObject<HTMLInputElement>) {
-    setCopied(false);
     setIpStr("");
     if (ref.current) {
       ref.current.value = "";
@@ -109,12 +97,7 @@ function IpConverterCard({ regex, type }: IpConverterCardProps) {
                 Result of <i className="sm:font-bold sm:tracking-wide">{ipStr} </i> is :
               </p>
               <br></br>
-              <div className="flex gap-4 text-sm sm:text-xl">
-                <p className="sm:tracking-wider">{afterConvert}</p>
-                <CopyToClipboard onCopy={() => setCopied(true)} text={afterConvert}>
-                  <button>{copied ? <LuCopyCheck /> : <LuCopy />}</button>
-                </CopyToClipboard>
-              </div>
+              <CopyDisplay copyValue={afterConvert}></CopyDisplay>
             </>
           )}
         </div>
