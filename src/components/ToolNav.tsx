@@ -8,9 +8,10 @@ type ToolNavItem = {
 type ToolNavProps = {
   items: ToolNavItem[];
   onSetField: React.Dispatch<React.SetStateAction<string>>;
+  currentField: string;
 };
 
-function ToolNav({ items, onSetField }: ToolNavProps) {
+function ToolNav({ items, onSetField, currentField }: ToolNavProps) {
   return (
     <Menubar>
       {items.map((item) => {
@@ -21,7 +22,7 @@ function ToolNav({ items, onSetField }: ToolNavProps) {
                 onSetField(item.fieldName);
               }}
             >
-              {item.buttonTag}
+              <p className={currentField === item.fieldName ? "font-bold" : ""}>{item.buttonTag}</p>
             </MenubarTrigger>
           </MenubarMenu>
         );

@@ -26,6 +26,7 @@ const maxNumArr: { [key: string]: number } = {
 
 function ChecksumCard() {
   const [inputStr, setInputStr] = useState<string[]>([]);
+  const [firstLen, setFirstLen] = useState<number | null>(null);
   const [checkSum, setCheckSum] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -44,8 +45,16 @@ function ChecksumCard() {
 
     if (!currentValue || !binaryChecksumRegex.test(currentValue)) {
       errorToast("Checksum has to be 8 or 16 digit");
-      return inputRef.current?.focus();
+      return;
     }
+
+    if (!firstLen) setFirstLen(currentValue.length);
+
+    if (firstLen && currentValue.length !== firstLen) {
+      errorToast("Inputs must have same length");
+      return;
+    }
+
     setInputStr(() => [...inputStr, currentValue]);
     if (inputRef.current) inputRef.current.value = "";
   };
@@ -53,13 +62,13 @@ function ChecksumCard() {
   const clearInput = () => {
     setInputStr([]);
     setCheckSum(null);
+    setFirstLen(null);
   };
 
   const calculateChecksum = () => {
-    if (inputStr.length < 1) return;
+    if (inputStr.length < 1 || !firstLen) return;
     const numArr = inputStr.map((e) => binaryToDecimal(e));
-    const currentLen = inputStr[0].length;
-    const maxNum = maxNumArr[currentLen.toString()];
+    const maxNum = maxNumArr[firstLen.toString()];
 
     let result = 0;
 
@@ -69,7 +78,7 @@ function ChecksumCard() {
       return result;
     });
 
-    const checksum: string = decimalToBinary(maxNum - result).padStart(currentLen, "0");
+    const checksum: string = decimalToBinary(maxNum - result).padStart(firstLen, "0");
 
     setCheckSum(checksum);
   };
@@ -84,7 +93,7 @@ function ChecksumCard() {
         <div className="flex w-full max-w-lg items-center space-x-2 mb-2">
           <Input ref={inputRef} placeholder={"input binary"} />
         </div>
-        <div className="gap-2 space-x-2 ">
+        <div className="gap-2 space-y-1  space-x-2 ">
           <Button onClick={addInput}>+</Button>
           <Button disabled={inputStr.length < 2} onClick={calculateChecksum}>
             Calculate
