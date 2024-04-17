@@ -21,7 +21,7 @@ function ToolPage() {
           I haven't design the whole app yet, just putting everything here for now.
         </p>
       </div>
-      <ToolNav items={toolPageContent} onSetField={setFieldName} />
+      <ToolNav items={toolPageContent} onSetField={setFieldName} currentField={fieldName} />
       <div>
         {fieldName === "network" && <NetworkLayer />}
         {fieldName === "transport" && <TransportLayer />}
