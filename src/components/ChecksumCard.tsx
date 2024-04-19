@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import CopyDisplay from "./CopyDisplay";
+import CustomizedToolTip from "./CustomizedToolTip";
 
 import {
   Card,
@@ -44,7 +45,7 @@ function ChecksumCard() {
     const currentValue = inputRef.current?.value.trim();
 
     if (!currentValue || !binaryChecksumRegex.test(currentValue)) {
-      errorToast("Checksum has to be 8 or 16 digit");
+      errorToast("Checksum has to be 8 or 16 digit, and only contains 0 and 1");
       return;
     }
 
@@ -82,11 +83,19 @@ function ChecksumCard() {
 
     setCheckSum(checksum);
   };
+  const tips = [
+    "Input one binary strings each time",
+    "Press '+' add them into the list",
+    "Press 'calculate' to get the checksum for the entire list",
+  ];
 
   return (
     <Card className="my-6 sm:min-w-64 max-w-lg">
       <CardHeader>
-        <CardTitle>Checksum Calculator</CardTitle>
+        <CardTitle>
+          Checksum Calculator <CustomizedToolTip tips={tips}></CustomizedToolTip>
+        </CardTitle>
+
         <CardDescription>Calculating Checksum for UDP</CardDescription>
       </CardHeader>
       <CardContent>
