@@ -1,4 +1,5 @@
 import ChecksumCard from "./ChecksumCard";
+import TCPAckSeqCard from "./TCPAckSeqCard";
 
 function TransportLayer() {
   return (
@@ -8,8 +9,9 @@ function TransportLayer() {
           Transport layer tools
         </h2>
       </div>
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
+      <div className="flex max-w-[980px] flex-col items-start">
         <ChecksumCard />
+        <TCPAckSeqCard />
       </div>
     </>
   );
