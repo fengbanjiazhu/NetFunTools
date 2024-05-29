@@ -72,7 +72,7 @@ function TCPAckSeqCard() {
         <CardDescription>Calculating ACK Seq number for TCP transport</CardDescription>
       </CardHeader>
       <CardContent>
-        <img src={image} alt="an image"></img>
+        <img className="mb-4" src={image} alt="an image"></img>
         <div className="flex w-full max-w-lg items-center space-x-2 mb-2">
           <Label htmlFor="sendbaseX">X:</Label>
           <Input id="sendbaseX" ref={inputRefX} placeholder={"input Client SendBase X number"} />

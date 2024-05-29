@@ -4,9 +4,10 @@ const updateLog = [
   { date: "2024.04.16", content: "Add Checksum calculation tool" },
   { date: "2024.04.14", content: "Add navigator for tools page" },
   { date: "2024.04.10", content: "Add IP address converter" },
+  { date: "2024.05.29", content: "Add ACK Seq tools" },
 ];
 
-const planedLog = [{ date: "2024", content: "Longest Prefix Match Algorithm tool" }];
+const planedLog = [{ date: "2024", content: "No plan for now?" }];
 
 export default function HomePage() {
   return (
